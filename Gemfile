@@ -56,7 +56,7 @@ gem 'rswag'
 
 gem 'geokit-rails' # https://github.com/geokit/geokit-rails
 
-gem 'rspec-core'
+gem 'rspec'
 
 group :development, :test do
 	# Call 'byebug' anywhere in the code to stop execution and get a debugger console
