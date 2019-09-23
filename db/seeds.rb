@@ -1,3 +1,5 @@
+puts "Starting database seeding..."
+
 puts "Create Users..."
 User.find_or_create_by document_number: 38425159, medical_plan_number: 310
 User.find_or_create_by document_number: 11111111, medical_plan_number: 310
@@ -24,22 +26,29 @@ vilo = Hospital.find_or_create_by(name: 'Hospital Vilo') do |h|
 	h.save!
 end
 
+puts "Create Specialities..."
+traumatologia = Specialty.find_or_create_by name: "Traumatología"
+oftalmologia = Specialty.find_or_create_by name: "Oftalmología"
+
 puts "Create Doctors..."
 Doctor.find_or_create_by(name: 'Harry') do |d|
 	d.phone_number = 1559638738
 	d.hospital = aleman
-	d.specialty = 'traumatologo'
+	d.specialty = traumatologia
 	d.save!
 end
 Doctor.find_or_create_by(name: 'Ron') do |d|
 	d.phone_number = 1559638739
 	d.hospital = fiuba
-	d.specialty = 'traumatologo'
+	d.specialty = traumatologia
 	d.save!
 end
 Doctor.find_or_create_by(name: 'Hermione') do |d|
 	d.phone_number = 1559638740
 	d.hospital = vilo
-	d.specialty = 'oculista'
+	d.specialty = oftalmologia
 	d.save!
 end
+
+
+puts "Database seeding finished"
