@@ -6,19 +6,19 @@ describe 'Users API' do
 			tags 'Users'
 			consumes 'application/json'
 			parameter name: :user_params, in: :body, schema: {
-			type: :object,
-			properties: {
-				document_number: { type: :integer },
-				medical_plan_number: { type: :integer },
-				email: { type: :string },
-				first_name: { type: :string },
-				last_name: { type: :string },
-				phone_number: { type: :string },
-				birth_date: { type: :string },
-				medical_plan_expiration_date: { type: :string },
-				password: { type: :string }
-			},
-			required: [ 'document_number', 'medical_plan_number' ]
+				type: :object,
+				properties: {
+					document_number: { type: :integer },
+					medical_plan_number: { type: :integer },
+					email: { type: :string },
+					first_name: { type: :string },
+					last_name: { type: :string },
+					phone_number: { type: :string },
+					birth_date: { type: :string },
+					medical_plan_expiration_date: { type: :string },
+					password: { type: :string }
+				},
+				required: [ 'document_number', 'medical_plan_number' ]
 			}
 			let(:user_params) { { document_number: 11111111, medical_plan_number: 310 } }
 

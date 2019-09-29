@@ -4,42 +4,39 @@ User.find_or_create_by document_number: 11111111, medical_plan_number: 310
 User.find_or_create_by document_number: 11111112, medical_plan_number: 310
 User.find_or_create_by document_number: 11111113, medical_plan_number: 310
 
-puts "Create Hospitals..."
-aleman = Hospital.find_or_create_by(name: 'Hospital Aleman') do |h|
-	h.latitude = -34.5922517
-	h.longitude = -58.4038044
-	h.address = 'Av. Pueyrredón 164'
-	h.save!
-end
-fiuba = Hospital.find_or_create_by(name: 'Hospital FIUBA') do |h|
-	h.latitude = -34.6175988
-	h.longitude = -58.3776464
-	h.address = 'Av. Paseo Colón 822'
-	h.save!
-end
-vilo = Hospital.find_or_create_by(name: 'Hospital Vilo') do |h| 
-	h.latitude = -34.5233629
-	h.longitude = -58.5043826
-	h.address = 'Gdor. Ugarte 1501'
-	h.save!
+puts "Create Health Providers..."
+HealthProvider.find_or_create_by(name: 'Hospital Aleman') do |hp|
+	hp.latitude = -34.5922517
+	hp.longitude = -58.4038044
+	hp.address = 'Av. Pueyrredón 164'
+	hp.phone_number = '45667834'
+	hp.specialty = 'traumatologo'
+	hp.languages = 'español, alemán, inglés'
+	hp.medical_plan_numbers_accepted = '310, 410, 510'
+	hp.provider_type = :hospital
+	hp.save!
 end
 
-puts "Create Doctors..."
-Doctor.find_or_create_by(name: 'Harry') do |d|
-	d.phone_number = 1559638738
-	d.hospital = aleman
-	d.specialty = 'traumatologo'
-	d.save!
+HealthProvider.find_or_create_by(name: 'Harry') do |hp|
+	hp.latitude = -34.6177975
+	hp.longitude = -58.3689796
+	hp.address = 'Av. Paseo Colon y Av. Independencia'
+	hp.phone_number = '45667835'
+	hp.specialty = 'oculista'
+	hp.languages = 'español'
+	hp.medical_plan_numbers_accepted = '310'
+	hp.provider_type = :doctor
+	hp.save!
 end
-Doctor.find_or_create_by(name: 'Ron') do |d|
-	d.phone_number = 1559638739
-	d.hospital = fiuba
-	d.specialty = 'traumatologo'
-	d.save!
-end
-Doctor.find_or_create_by(name: 'Hermione') do |d|
-	d.phone_number = 1559638740
-	d.hospital = vilo
-	d.specialty = 'oculista'
-	d.save!
+
+HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
+	hp.latitude = -34.5048425
+	hp.longitude = -58.4992926
+	hp.address = 'Av. Maipu y Ugarte'
+	hp.phone_number = '45667836'
+	hp.specialty = 'traumatologo'
+	hp.languages = 'español, inglés'
+	hp.medical_plan_numbers_accepted = '310, 410'
+	hp.provider_type = :doctor
+	hp.save!
 end
