@@ -5,6 +5,57 @@
     "version": "v1"
   },
   "paths": {
+    "/health_providers/search": {
+      "get": {
+        "summary": "Search health providers",
+        "tags": [
+          "HealthProvider"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "specialty",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "oculista o traumatologo"
+          },
+          {
+            "name": "radius",
+            "in": "path",
+            "type": "integer",
+            "required": true,
+            "description": "radio en km"
+          },
+          {
+            "name": "latitude",
+            "in": "path",
+            "type": "float",
+            "required": true
+          },
+          {
+            "name": "longitude",
+            "in": "path",
+            "type": "float",
+            "required": true
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "authorization",
+            "required": true,
+            "description": "Client token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "health providers searched"
+          }
+        }
+      }
+    },
     "/sign_up": {
       "post": {
         "summary": "Sign up",
@@ -40,10 +91,10 @@
                   "type": "string"
                 },
                 "birth_date": {
-                  "type": "date"
+                  "type": "string"
                 },
                 "medical_plan_expiration_date": {
-                  "type": "date"
+                  "type": "string"
                 },
                 "password": {
                   "type": "string"
@@ -112,7 +163,7 @@
             "description": "user logged in"
           },
           "400": {
-            "description": "invslid password"
+            "description": "invalid password"
           },
           "404": {
             "description": "user doesn't exist"
