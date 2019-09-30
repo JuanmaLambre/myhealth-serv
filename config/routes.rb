@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 	use_doorkeeper
 	devise_for :users
 
-	resource :doctors do
+	resource :health_providers do
 		collection do
-			get 'search' => 'doctors#search'
+			get 'search' => 'health_providers#search'
 		end
 	end
 
