@@ -119,6 +119,24 @@
           }
         }
       }
+    },
+    "/specialties": {
+       "get": {
+         "summary": "Get all doctors specialties",
+         "tags": [
+           "Specialties"
+         ],
+         "consumes": [
+           "application/json"
+         ],
+         "parameters": [
+         ],
+         "responses": {
+           "200": {
+             "description": "All doctors specialties"
+           }
+         }
+       }
     }
   }
 }
