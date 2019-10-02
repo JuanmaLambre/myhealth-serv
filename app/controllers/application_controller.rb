@@ -33,4 +33,8 @@ class ApplicationController < ActionController::Base
 	def render_invalid_record(exception)
 		render_failed_response 'invalid_record', exception.record.errors.messages, 422
 	end
+
+	def current_user
+		User.find(doorkeeper_token[:resource_owner_id])
+	end
 end
