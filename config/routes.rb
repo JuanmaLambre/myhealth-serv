@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 	post 'sign_up' => 'users#sign_up'
 
-    resource :specialties, only: [:show]
+	resource :specialties, only: [:show]
+
+    resource :authorizations, only: [:show, :create]
 
 end
