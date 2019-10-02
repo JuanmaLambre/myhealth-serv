@@ -22,8 +22,8 @@ HealthProvider.find_or_create_by(name: 'Harry') do |hp|
 	hp.longitude = -58.3689796
 	hp.address = 'Av. Paseo Colon y Av. Independencia'
 	hp.phone_number = '45667835'
-	hp.specialty = 'oculista'
-	hp.languages = 'español'
+	hp.specialty = 'Oculista'
+	hp.languages = 'Español'
 	hp.medical_plan_numbers_accepted = '310'
 	hp.provider_type = :doctor
 	hp.save!
@@ -34,9 +34,11 @@ HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
 	hp.longitude = -58.4992926
 	hp.address = 'Av. Maipu y Ugarte'
 	hp.phone_number = '45667836'
-	hp.specialty = 'traumatologo'
-	hp.languages = 'español, inglés'
+	hp.specialty = 'Traumatologo'
+	hp.languages = 'Español, Inglés'
 	hp.medical_plan_numbers_accepted = '310, 410'
 	hp.provider_type = :doctor
 	hp.save!
 end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

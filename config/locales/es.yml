@@ -1,0 +1,9 @@
+es:
+  activerecord:
+    models:
+      health_provider:
+        one: "Prestador"
+        other: "Prestadores"
+      admin_user:
+        one: "Usuario"
+        other: "Usuarios"
