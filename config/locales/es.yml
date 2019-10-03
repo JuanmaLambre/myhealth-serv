@@ -7,3 +7,6 @@ es:
       admin_user:
         one: "Usuario"
         other: "Usuarios"
+      authorization:
+        one: "Autorización"
+        other: "Autorizaciones"

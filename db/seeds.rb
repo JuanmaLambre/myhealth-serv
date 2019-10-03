@@ -1,7 +1,7 @@
 puts "Starting database seeding..."
 
 puts "Create Users..."
-User.find_or_create_by document_number: 38425159, medical_plan_number: 310
+user1 = User.find_or_create_by document_number: 38425159, medical_plan_number: 310
 User.find_or_create_by document_number: 11111111, medical_plan_number: 310
 User.find_or_create_by document_number: 11111112, medical_plan_number: 310
 User.find_or_create_by document_number: 11111113, medical_plan_number: 310
@@ -35,7 +35,7 @@ HealthProvider.find_or_create_by(name: 'Harry') do |hp|
 	hp.save!
 end
 
-HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
+hp = HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
 	hp.latitude = -34.5048425
 	hp.longitude = -58.4992926
 	hp.address = 'Av. Maipu y Ugarte'
@@ -46,7 +46,6 @@ HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
 	hp.provider_type = :doctor
 	hp.save!
 end
-
+Authorization.create!(requester: user1, specialty: traumatologia, status: "Requested", provider: hp)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && !AdminUser.find_by(email: "admin@example.com").present?
-
 puts "Database seeding finished"
