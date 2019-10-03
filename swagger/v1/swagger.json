@@ -19,40 +19,7 @@
             "name": "user_params",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "document_number": {
-                  "type": "integer"
-                },
-                "medical_plan_number": {
-                  "type": "integer"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "first_name": {
-                  "type": "string"
-                },
-                "last_name": {
-                  "type": "string"
-                },
-                "phone_number": {
-                  "type": "string"
-                },
-                "birth_date": {
-                  "type": "date"
-                },
-                "medical_plan_expiration_date": {
-                  "type": "date"
-                },
-                "password": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "document_number",
-                "medical_plan_number"
-              ]
+              "$ref": "#/components/request_params/sign_up"
             }
           }
         ],
@@ -83,27 +50,10 @@
         ],
         "parameters": [
           {
-            "name": "log_in_params",
+            "name": "Log In",
             "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "document_number": {
-                  "type": "integer"
-                },
-                "password": {
-                  "type": "string"
-                },
-                "grant_type": {
-                  "type": "string",
-                  "description": "password"
-                }
-              },
-              "required": [
-                "document_number",
-                "password",
-                "grant_type"
-              ]
+              "$ref": "#/components/request_params/log_in"
             }
           }
         ],
@@ -137,6 +87,162 @@
            }
          }
        }
+    },
+    "/authorizations": {
+      "get": {
+        "summary": "Get all user's authorizations",
+        "tags": [
+          "Authorizations"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "All user's authorizations"
+          },
+          "401": {
+            "description": "Access token invalid"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create authorization",
+        "tags": [
+          "Authorizations"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorizations params",
+            "in": "body",
+            "schema": {
+              "$ref": "#/components/request_params/authorization"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authorization created successfully",
+            "schema": {
+              "$ref": "#/definitions/Authorization"
+            }
+          },
+          "401": {
+            "description": "Access token invalid"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "request_params": {
+      "sign_up": {
+        "type": "object",
+        "properties": {
+          "document_number": {
+            "type": "integer"
+          },
+          "medical_plan_number": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          },
+          "birth_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "medical_plan_expiration_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "document_number",
+          "medical_plan_number"
+        ]
+      },
+      "log_in": {
+        "type": "object",
+        "properties": {
+          "document_number": {
+            "type": "integer"
+          },
+          "password": {
+            "type": "string"
+          },
+          "grant_type": {
+            "type": "string",
+            "description": "password"
+          }
+        },
+        "required": [
+          "document_number",
+          "password",
+          "grant_type"
+        ]
+      },
+      "authorization": {
+        "type": "object",
+        "properties": {
+          "provider_id": {
+            "type": "integer"
+          },
+          "specialty_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "provider_id",
+          "specialty_id"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Authorization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "requester_id": {
+          "type": "integer"
+        },
+        "provider_id": {
+          "type": "integer"
+        },
+        "specialty_id": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string"
+        },
+        "processed_time": {
+          "type": "string",
+          "format": "date-time",
+          "nullable": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     }
   }
 }
