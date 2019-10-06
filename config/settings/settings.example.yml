@@ -1,2 +1,4 @@
 urls:
   base: http://localhost:3000
+timezone:
+  local: 'America/Argentina/Buenos_Aires'

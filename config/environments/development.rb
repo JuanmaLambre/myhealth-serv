@@ -60,4 +60,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   Rails.application.routes.default_url_options[:host] = Settings.urls.base
+
+  config.time_zone = Settings.timezone.local
 end
