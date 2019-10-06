@@ -18,6 +18,8 @@
 
 class HealthProvider < ApplicationRecord
 	enum provider_type: { doctor: 'doctor', hospital: 'hospital' }
+    
+    belongs_to :specialty
 
 	acts_as_mappable :default_units => :kms,
 		:lat_column_name => :latitude,

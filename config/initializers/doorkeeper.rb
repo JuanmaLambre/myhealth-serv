@@ -21,7 +21,7 @@ Doorkeeper.configure do
 	# want to use API mode that will skip all the views management and change the way how
 	# Doorkeeper responds to a requests.
 	#
-	api_only
+	#api_only
 end
 
 require_relative "#{Rails.root}/lib/doorkeeper_create_token"

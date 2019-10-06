@@ -4,11 +4,15 @@ class ApplicationController < ActionController::Base
 
 	protect_from_forgery with: :exception
 	skip_before_action :verify_authenticity_token
-	before_action :doorkeeper_authorize!
+	# before_action :doorkeeper_authorize!
 
 	rescue_from ::ActiveRecord::RecordNotFound, with: :render_record_not_found
 	rescue_from ::ActiveRecord::RecordInvalid, with: :render_invalid_record
 	rescue_from ::MyHealthError, with: :render_my_health_error
+
+	def set_admin_locale
+		I18n.locale = :es
+	end
 
 	private
 	def render_object(object, options = {})
@@ -29,5 +33,9 @@ class ApplicationController < ActionController::Base
 
 	def render_invalid_record(exception)
 		render_failed_response 'invalid_record', exception.record.errors.messages, 422
+	end
+
+	def current_user
+		User.find(doorkeeper_token[:resource_owner_id]) if doorkeeper_token.present?
 	end
 end
