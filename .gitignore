@@ -18,6 +18,9 @@ pickle-email-*.html
 config/initializers/secret_token.rb
 config/master.key
 config/database.yml
+config/settings/development.yml
+config/settings/production.yml
+config/settings/test.yml
 db/schema.rb
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
@@ -60,3 +63,7 @@ node_modules/
 /public/assets
 
 .idea/*
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

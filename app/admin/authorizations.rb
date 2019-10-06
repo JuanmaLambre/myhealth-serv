@@ -66,9 +66,12 @@ ActiveAdmin.register Authorization do
       row 'Fecha de procesamiento' do |a|
         a.processed_time
       end
-      row 'Imagen' do |a|
-        image_tag(a.image, width:273,height:248) if a.image.attached?
-      end
+      row 'Imagen del solicitante' do |a|
+        image_tag(a.requester_image, width:273,height:248) if a.requester_image.attached?
+		end
+		row 'Imagen de la resolución' do |a|
+			image_tag(a.image, width:273,height:248) if a.image.attached?
+		end
 
 
 
@@ -78,9 +81,9 @@ ActiveAdmin.register Authorization do
   end
 
   form do |f|
-    f.inputs do
+	 f.inputs do
       f.input :status, label: "Estado", as: :select, include_blank: false, collection: Authorization.statuses
-      f.input :image, label: "Imagen", :as => :file
+      f.input :image, label: "Imagen de la resolución", :as => :file
 
     end
     f.actions

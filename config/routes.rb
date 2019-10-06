@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
 	resource :specialties, only: [:show]
 
-    resource :authorizations, only: [:show, :create]
+	resource :authorizations, only: [:show, :create]
 
 end
