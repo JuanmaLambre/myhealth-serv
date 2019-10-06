@@ -7,6 +7,12 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
+$primary-color: #1976d2;
+
+#title_bar {
+  //background-image: linear-gradient(#ffe97d, #ffe97d) !important;
+}
+
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
