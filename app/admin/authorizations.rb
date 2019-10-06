@@ -26,6 +26,11 @@ ActiveAdmin.register Authorization do
       authorization = UpdateAuthorization.new(authorization_params: params, current_user: current_admin_user).execute()
       redirect_to admin_authorization_path(authorization.id)
     end
+
+    def show
+      resource.evaluation! if resource.requested?
+      super
+    end
   end
 
   index do
