@@ -5,7 +5,7 @@ ActiveAdmin.register Authorization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :status, :image, :comment
+  permit_params :status, :image, :comment, :processed_time, :authorizer
   #
   # or
   #
@@ -18,6 +18,13 @@ ActiveAdmin.register Authorization do
   actions :all, :except => [:new]
 
   filter :status
+
+  controller do
+    def update
+      authorization = UpdateAuthorization.new(authorization_params: params, current_user: current_admin_user).execute()
+      redirect_to admin_authorization_path(authorization.id)
+    end
+  end
 
   index do
     id_column
@@ -57,7 +64,7 @@ ActiveAdmin.register Authorization do
       row 'Nombre del solicitante' do |a|
         a.requester.first_name
       end
-      row 'Apellido del solicitante' do |a|
+        row 'Apellido del solicitante' do |a|
         a.requester.last_name
       end
       row 'Plan' do |a|
@@ -69,8 +76,11 @@ ActiveAdmin.register Authorization do
       row 'Fecha de procesamiento' do |a|
         a.processed_time
       end
-      row 'Comentario' do |a|
+      row 'Observaciones' do |a|
         a.comment
+      end
+      row 'Autorizador' do |a|
+        a.authorizer.email if a.authorizer.present?
       end
       row 'Imagen' do |a|
         image_tag(a.image, width:273,height:248) if a.image.attached?
@@ -83,8 +93,7 @@ ActiveAdmin.register Authorization do
     f.inputs do
       f.input :status, selected: Authorization.statuses[f.object.status], label: "Estado", as: :select, include_blank: false, collection: Authorization.statuses.values
       f.input :image, label: "Imagen", :as => :file
-      f.input :comment, label: "Comentario"
-
+      f.input :comment, label: "Observaciones"
     end
     f.actions
   end
