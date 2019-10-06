@@ -56,7 +56,7 @@ ActiveAdmin.register HealthProvider do
       row "Números de planes aceptados" do |hp|
         hp.medical_plan_numbers_accepted
       end
-      row "Lenguajes" do |hp|
+      row "Idioma" do |hp|
         hp.languages
       end
     end
@@ -72,7 +72,7 @@ ActiveAdmin.register HealthProvider do
       f.input :longitude, label: "Longitud"
       f.input :address, label: "Dirección"
       f.input :medical_plan_numbers_accepted, label: "Números de planes aceptados"
-      f.input :languages, label: "Lenguajes"
+      f.input :languages, label: "Idioma"
     end
     f.actions
   end

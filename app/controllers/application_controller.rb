@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	def current_user
-		User.find(doorkeeper_token[:resource_owner_id])
+		User.find(doorkeeper_token[:resource_owner_id]) if doorkeeper_token.present?
 	end
 end
