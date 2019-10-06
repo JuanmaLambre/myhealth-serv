@@ -5,8 +5,8 @@ es:
         one: "Prestador"
         other: "Prestadores"
       admin_user:
-        one: "Usuario"
-        other: "Usuarios"
+        one: "Administrador"
+        other: "Administradores"
       authorization:
         one: "Autorización"
         other: "Autorizaciones"

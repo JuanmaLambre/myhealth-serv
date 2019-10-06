@@ -1,4 +1,5 @@
 class AuthorizationsController < ApplicationController
+	before_action :doorkeeper_authorize!
 
 	def create
 		authorization = Authorization.create(
@@ -7,6 +8,8 @@ class AuthorizationsController < ApplicationController
 			specialty: Specialty.find(params[:specialty_id]),
 			status: Authorization.statuses[:requested]
 		)
+		authorization.image.attach params[:image]
+		authorization.save!
 		render json: authorization, status: 201
 	end
 
