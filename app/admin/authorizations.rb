@@ -5,7 +5,7 @@ ActiveAdmin.register Authorization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :status, :image
+  permit_params :status, :image, :comment
   #
   # or
   #
@@ -15,6 +15,7 @@ ActiveAdmin.register Authorization do
   #   permitted
   # end
   #
+  actions :all, :except => [:new]
 
   filter :status
 
@@ -32,7 +33,9 @@ ActiveAdmin.register Authorization do
       a.requester.medical_plan_number
     end
     column "Fecha de pedido", :created_at
-    column "Estado", :status
+    column "Estado" do |a|
+      Authorization.statuses[a.status]
+    end
     column "Fecha de procesamiento" , :processed_time
     actions
   end
@@ -40,7 +43,7 @@ ActiveAdmin.register Authorization do
   show do
     attributes_table do
       row 'Estado' do |a|
-        a.status
+        Authorization.statuses[a.status]
       end
       row 'Prestador' do |a|
         a.provider.name unless !a.provider.present?
@@ -66,21 +69,21 @@ ActiveAdmin.register Authorization do
       row 'Fecha de procesamiento' do |a|
         a.processed_time
       end
+      row 'Comentario' do |a|
+        a.comment
+      end
       row 'Imagen' do |a|
         image_tag(a.image, width:273,height:248) if a.image.attached?
       end
-
-
-
-
 
     end
   end
 
   form do |f|
     f.inputs do
-      f.input :status, label: "Estado", as: :select, include_blank: false, collection: Authorization.statuses
+      f.input :status, selected: Authorization.statuses[f.object.status], label: "Estado", as: :select, include_blank: false, collection: Authorization.statuses.values
       f.input :image, label: "Imagen", :as => :file
+      f.input :comment, label: "Comentario"
 
     end
     f.actions

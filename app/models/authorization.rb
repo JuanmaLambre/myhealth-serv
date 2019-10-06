@@ -1,6 +1,6 @@
 class Authorization < ApplicationRecord
-	enum status: { requested: 'Requested', evaluation: 'Evaluation',
-                 declined: 'Declined', accepted: 'Accepted' }
+	enum status: { requested: 'Pedido', evaluation: 'En evaluación',
+                 declined: 'Rechazado', accepted: 'Aceptado' }
 
 	belongs_to :requester, class_name: 'User'
 	belongs_to :specialty
