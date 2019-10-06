@@ -17,7 +17,9 @@ ActiveAdmin.register Authorization do
   #
   actions :all, :except => [:new]
 
-  filter :status
+  filter :status, as: :select, collection: Authorization.statuses.values 
+  filter :provider
+  filter :requester_email, as: :string
 
   controller do
     def update
@@ -82,10 +84,12 @@ ActiveAdmin.register Authorization do
       row 'Autorizador' do |a|
         a.authorizer.email if a.authorizer.present?
       end
-      row 'Imagen' do |a|
+      row 'Imagen del solicitante' do |a|
+        image_tag(a.requester_image, width:273,height:248) if a.requester_image.attached?
+      end
+      row 'Imagen de la resolución' do |a|
         image_tag(a.image, width:273,height:248) if a.image.attached?
       end
-
     end
   end
 

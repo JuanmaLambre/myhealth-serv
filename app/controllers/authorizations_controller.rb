@@ -8,7 +8,7 @@ class AuthorizationsController < ApplicationController
 			specialty: Specialty.find(params[:specialty_id]),
 			status: Authorization.statuses[:requested]
 		)
-		authorization.image.attach params[:image]
+		authorization.requester_image.attach params[:requester_image]
 		authorization.save!
 		render json: authorization, status: 201
 	end
