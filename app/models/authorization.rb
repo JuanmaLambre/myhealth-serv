@@ -7,4 +7,6 @@ class Authorization < ApplicationRecord
 	belongs_to :provider, class_name: 'HealthProvider'
 
 	has_one_attached :image
+
+    scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
 end

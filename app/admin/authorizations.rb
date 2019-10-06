@@ -17,7 +17,9 @@ ActiveAdmin.register Authorization do
   #
   actions :all, :except => [:new]
 
-  filter :status
+  filter :status, as: :select, collection: Authorization.statuses.values 
+  filter :provider
+  filter :requester_email, as: :string
 
   index do
     id_column
