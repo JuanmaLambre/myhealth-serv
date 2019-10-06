@@ -71,11 +71,14 @@ ActiveAdmin.register Authorization do
       row 'Fecha de procesamiento' do |a|
         a.processed_time
       end
+      row 'Imagen del solicitante' do |a|
+        image_tag(a.requester_image, width:273,height:248) if a.requester_image.attached?
+		end
+		row 'Imagen de la resolución' do |a|
+			image_tag(a.image, width:273,height:248) if a.image.attached?
+		end
       row 'Comentario' do |a|
         a.comment
-      end
-      row 'Imagen' do |a|
-        image_tag(a.image, width:273,height:248) if a.image.attached?
       end
 
     end
