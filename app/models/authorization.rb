@@ -11,7 +11,7 @@ class Authorization < ApplicationRecord
 	has_one_attached :requester_image
 	has_one_attached :image
 
-    scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
+	scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
 
 
 	def requester_image_url
