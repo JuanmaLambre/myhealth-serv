@@ -10,3 +10,6 @@ es:
       authorization:
         one: "Autorización"
         other: "Autorizaciones"
+      specialty:
+        one: "Especialidad"
+        other: "Especialidades"

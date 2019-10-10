@@ -17,9 +17,9 @@ ActiveAdmin.register Authorization do
   #
   actions :all, :except => [:new]
 
-  filter :status, as: :select, collection: Authorization.statuses.values 
-  filter :provider
-  filter :requester_email, as: :string
+  filter :status, label: "Estado", as: :select, collection: Authorization.statuses.values
+  filter :provider, label: "Prestador"
+  filter :requester_email, label: "Mail del solicitante", as: :string
 
   controller do
     def update
