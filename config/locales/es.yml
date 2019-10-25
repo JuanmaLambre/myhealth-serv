@@ -1,15 +1,18 @@
 es:
   activerecord:
     models:
-      health_provider:
-        one: "Prestador"
-        other: "Prestadores"
       admin_user:
         one: "Administrador"
         other: "Administradores"
       authorization:
         one: "Autorización"
         other: "Autorizaciones"
+      health_provider:
+        one: "Prestador"
+        other: "Prestadores"
+      medical_plan:
+        one: "Plan Médico"
+        other: "Planes Médicos"
       specialty:
         one: "Especialidad"
         other: "Especialidades"

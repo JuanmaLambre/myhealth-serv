@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resource :specialties, only: [:show]
+	resources :specialties, only: [:index]
 
-	resource :authorizations, only: [:show, :create]
+	resources :authorizations, only: [:index, :create]
 
 	resources :users
 

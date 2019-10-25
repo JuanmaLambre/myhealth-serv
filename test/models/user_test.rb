@@ -5,7 +5,6 @@
 #  id                           :bigint           not null, primary key
 #  email                        :string(255)      default(""), not null
 #  encrypted_password           :string(255)      default(""), not null
-#  medical_plan_number          :integer
 #  document_number              :integer
 #  first_name                   :string(255)
 #  last_name                    :string(255)
@@ -16,6 +15,7 @@
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #  device_token                 :string(255)
+#  medical_plan_id              :bigint
 #
 
 require 'test_helper'
