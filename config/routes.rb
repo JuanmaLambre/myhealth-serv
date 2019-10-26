@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+	devise_for :admin_users, ActiveAdmin::Devise.config
+	ActiveAdmin.routes(self)
 	mount Rswag::Ui::Engine => '/api-docs'
 	mount Rswag::Api::Engine => '/api-docs'
 	use_doorkeeper
@@ -12,10 +12,11 @@ Rails.application.routes.draw do
 		end
 	end
 
-	post 'sign_up' => 'users#sign_up'
-
 	resource :specialties, only: [:show]
 
-    resource :authorizations, only: [:show, :create]
+	resource :authorizations, only: [:show, :create]
 
+	resources :users
+
+	post 'sign_up' => 'users#sign_up'
 end

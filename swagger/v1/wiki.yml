@@ -1,0 +1,289 @@
+swagger: '2.0'
+info:
+  title: API V1
+  version: "1.0.0"
+paths:
+  /authorizations:
+    get:
+      summary: Get authorizations
+      tags:
+        - Authorizations
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: authorizations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Authorization'
+    post:
+      summary: Create authorization
+      tags:
+        - Authorizations
+      consumes:
+        - application/json
+      parameters:
+        - name: authoriztions
+          in: body
+          schema:
+            type: object
+            properties:
+              provider_id:
+                type: integer
+              specialty_id:
+                type: integer
+              requester_image:
+                type: string
+                description: imagen
+            required:
+              - provider_id
+              - specialty_id
+              - requester_image
+      responses:
+        '200':
+          description: authorizations
+          schema:
+            $ref: '#/definitions/Authorization'
+  /health_providers/search:
+    get:
+      summary: Search health providers
+      tags:
+        - HealthProvider
+      consumes:
+        - application/json
+      parameters:
+        - name: specialty_id
+          in: path
+          type: integer
+          required: true
+          description: id de la especialidad
+        - name: radius
+          in: path
+          type: integer
+          required: true
+          description: radio en km
+        - name: latitude
+          in: path
+          type: integer
+          required: true
+        - name: longitude
+          in: path
+          type: integer
+          required: true
+        - in: header
+          type: string
+          name: authorization
+          required: true
+          description: Client token
+      responses:
+        '200':
+          description: health providers searched
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/HealthProvider'
+  /oauth/token:
+    post:
+      summary: Log in
+      tags:
+        - Users
+      consumes:
+        - application/json
+      parameters:
+        - name: log_in_params
+          in: body
+          schema:
+            type: object
+            properties:
+              document_number:
+                type: integer
+              password:
+                type: string
+              grant_type:
+                type: string
+                description: password
+            required:
+              - document_number
+              - password
+              - grant_type
+      responses:
+        '200':
+          description: user logged in
+        '400':
+          description: invalid password
+        '404':
+          description: user doesn't exist
+  /sign_up:
+    post:
+      summary: Sign up
+      tags:
+        - Users
+      consumes:
+        - application/json
+      parameters:
+        - name: user_params
+          in: body
+          schema:
+            type: object
+            properties:
+              document_number:
+                type: integer
+              medical_plan_number:
+                type: integer
+              email:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              phone_number:
+                type: string
+              birth_date:
+                type: string
+              medical_plan_expiration_date:
+                type: string
+              password:
+                type: string
+            required:
+              - document_number
+              - medical_plan_number
+      responses:
+        '200':
+          description: user signed up
+          schema:
+            $ref: '#/definitions/User'
+        '400':
+          description: user has already signed up
+        '404':
+          description: user doesn't exist
+        '422':
+          description: invalid email
+  /specialties:
+    get:
+      summary: Get specialties
+      tags:
+        - Specialty
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: A Specialty list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Specialty'
+  /users/me:
+    patch:
+      summary: Update user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      parameters:
+        - name: user_params
+          in: body
+          schema:
+            type: object
+            properties:
+              device_token:
+                type: string
+            required:
+              - device_token
+      responses:
+        '200':
+          description: user updated
+          schema:
+            $ref: '#/definitions/User'
+definitions:
+  Authorization:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      status:
+        type: string
+        enum:
+          - requested
+          - evaluation
+          - declined
+          - accepted
+      processed_time:
+        type: string
+      requester:
+        $ref: '#/definitions/User'
+      provider:
+        $ref: '#/definitions/HealthProvider'
+      specialty:
+        $ref: '#/definitions/Specialty'
+    xml:
+      name: Authorization
+  HealthProvider:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      phone_name:
+        type: string
+      provider_type:
+        type: string
+        enum:
+          - doctor
+          - hospital
+      languages:
+        type: string
+      medical_plan_numbers_accepted:
+        type: string
+      latitude:
+        type: number
+      longitude:
+        type: number
+      address:
+        type: string
+    xml:
+      name: HealthProvider
+  Specialty:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    xml:
+      name: Specialty
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      email:
+        type: string
+      medical_plan_number:
+        type: integer
+      document_number:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      phone_number:
+        type: string
+      birth_date:
+        type: string
+      medical_plan_expiration_date:
+        type: string
+      is_enabled:
+        type: boolean
+    xml:
+      name: User
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /ChanoMintrone/MyHealthApp/1.0.0
+schemes:
+ - https

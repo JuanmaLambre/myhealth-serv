@@ -16,12 +16,7 @@
 #  address                       :text(65535)
 #
 
-class HealthProvider < ApplicationRecord
-	enum provider_type: { doctor: 'doctor', hospital: 'hospital' }
-    
-    belongs_to :specialty
-
-	acts_as_mappable :default_units => :kms,
-		:lat_column_name => :latitude,
-		:lng_column_name => :longitude
+class HealthProviderSerializer < ActiveModel::Serializer
+	attributes :id, :phone_number, :name, :provider_type, :languages, :medical_plan_numbers_accepted, :latitude,
+		:longitude, :address
 end

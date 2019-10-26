@@ -14,8 +14,13 @@
 #  authorizer_id  :bigint
 #
 
-require 'rails_helper'
+class AuthorizationSerializer < ActiveModel::Serializer
+	attributes :id, :status, :processed_time
 
-RSpec.describe Authorization, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+	belongs_to :requester
+	belongs_to :provider
+	belongs_to :specialty
+
+	has_one :requester_image_url
+	has_one :approver_image_url
 end

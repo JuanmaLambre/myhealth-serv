@@ -49,3 +49,9 @@ bundle exec rake db:drop
 ```sh
 bundle exec annotate --exclude tests,fixtures,factories,serializers
 ```
+
+### Update Documentation
+
+```sh
+bundle exec rake rswag:specs:swaggerize
+```

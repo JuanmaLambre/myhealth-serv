@@ -5,7 +5,7 @@ ActiveAdmin.register HealthProvider do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :phone_number, :name, :specialty, :provider_type, :languages, :medical_plan_numbers_accepted, :latitude, :longitude, :address
+  permit_params :phone_number, :name, :specialty, :provider_type, :languages, :medical_plan_numbers_accepted, :latitude, :longitude, :address, :specialty_id
   #
   # or
   #
