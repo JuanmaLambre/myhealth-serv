@@ -173,6 +173,28 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Specialty'
+  /users/me:
+    patch:
+      summary: Update user
+      tags:
+        - Users
+      consumes:
+        - application/json
+      parameters:
+        - name: user_params
+          in: body
+          schema:
+            type: object
+            properties:
+              device_token:
+                type: string
+            required:
+              - device_token
+      responses:
+        '200':
+          description: user updated
+          schema:
+            $ref: '#/definitions/User'
 definitions:
   Authorization:
     type: object

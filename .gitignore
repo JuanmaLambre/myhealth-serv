@@ -21,6 +21,7 @@ config/database.yml
 config/settings/development.yml
 config/settings/production.yml
 config/settings/test.yml
+config/secrets.yml
 db/schema.rb
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
@@ -67,3 +68,6 @@ node_modules/
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key

@@ -5,9 +5,9 @@
 #  id                            :bigint           not null, primary key
 #  phone_number                  :string(255)
 #  name                          :string(255)
-#  specialty                     :string(255)
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
+#  specialty_id                  :bigint
 #  provider_type                 :string(255)
 #  languages                     :text(65535)
 #  medical_plan_numbers_accepted :text(65535)

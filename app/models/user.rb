@@ -15,10 +15,15 @@
 #  is_enabled                   :boolean          default(TRUE), not null
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
+#  device_token                 :string(255)
 #
 
 class User < ApplicationRecord
 	devise :database_authenticatable, :registerable
 
 	validates :email, 'valid_email_2/email': true
+
+	def name
+		"#{first_name} #{last_name}"
+	end
 end
