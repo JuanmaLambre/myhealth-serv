@@ -17,4 +17,15 @@ class AdminUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
+
+  @@roles = {admin: "Admin", authorizer: "Autorizador"}
+
+  def self.roles
+    @@roles
+  end
+
+  def super_admin?
+    self.role == AdminUser.roles[:admin]
+  end
+
 end
