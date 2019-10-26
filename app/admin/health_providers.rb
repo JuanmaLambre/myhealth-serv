@@ -68,8 +68,9 @@ ActiveAdmin.register HealthProvider do
       f.input :phone_number, label: "Número de teléfono"
       f.input :specialty, label: "Especialidad"
       f.input :provider_type, label: "Tipo de prestador", as: :select, include_blank: false, collection: HealthProvider.provider_types
-      f.input :latitude, label: "Latitud"
-      f.input :longitude, label: "Longitud"
+      f.input :latitude, label: "Latitud", input_html: { disabled: true }
+      f.input :longitude, label: "Longitud", input_html: { disabled: true } 
+      f.latlng lang: :es, id_lat: :health_provider_latitude, id_lng: :health_provider_longitude, map: :yandex, height: 300, map_zoom: 16
       f.input :address, label: "Dirección"
       f.input :medical_plan_numbers_accepted, label: "Números de planes aceptados"
       f.input :languages, label: "Idioma"
