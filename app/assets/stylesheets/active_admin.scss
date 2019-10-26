@@ -7,10 +7,12 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
-$primary-color: #1976d2;
+$primary-color: #3F51B5;
+$secondary-color: #FFE0B2;
+
 
 #title_bar {
-  //background-image: linear-gradient(#ffe97d, #ffe97d) !important;
+  background-image: linear-gradient($secondary-color, $secondary-color) !important;
 }
 
 // Active Admin's got SASS!
