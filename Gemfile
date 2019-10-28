@@ -66,6 +66,8 @@ gem 'rails-i18n'
 
 gem 'devise-i18n'
 
+gem 'activeadmin_latlng' # https://github.com/forsaken1/activeadmin-latlng
+
 gem 'config'
 
 gem 'active_storage_validations'
