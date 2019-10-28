@@ -29,6 +29,8 @@ GEM
       activemodel (>= 4.1, < 6.1)
       case_transform (>= 0.2)
       jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
+    active_storage_validations (0.8.3)
+      rails (>= 5.2.0)
     activeadmin (2.3.1)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (~> 3.1)
@@ -82,6 +84,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
+    cancan (1.6.10)
     capistrano (3.11.2)
       airbrussh (>= 1.0.0)
       i18n
@@ -425,11 +428,13 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  active_storage_validations
   activeadmin
   annotate
   bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   byebug
+  cancan
   capistrano
   capistrano-bundler
   capistrano-rails

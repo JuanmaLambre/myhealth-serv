@@ -27,6 +27,9 @@ class Authorization < ApplicationRecord
 	has_one_attached :requester_image
 	has_one_attached :image
 
+	validates :requester_image, size: { less_than: 50.megabytes , message: 'La imagen pesa más de lo permitido' }
+	#validates :image, size: { less_than: 1.megabytes }
+
 	scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
 
 	def requester_image_url
