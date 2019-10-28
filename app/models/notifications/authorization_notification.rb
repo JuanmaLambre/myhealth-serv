@@ -8,11 +8,11 @@ class AuthorizationNotification
 	end
 
 	def information
-		{ title: title, body: body }
+		{ title: title, body: body, content_available: true, priority: 'high' }
 	end
 
 	def data
-		ActiveModelSerializers::SerializableResource.new(@authorization, { include: [] } ).as_json
+		information
 	end
 
 	private

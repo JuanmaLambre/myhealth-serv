@@ -1,11 +1,15 @@
 puts "Starting database seeding..."
 
+puts "Create Medical Plans..."
+medical_plan_310 = MedicalPlan.find_or_create_by number: 310
+medical_plan_410 = MedicalPlan.find_or_create_by number: 410
+
 puts "Create Users..."
-user1 = User.find_or_create_by document_number: 38425159, medical_plan_number: 310
+user1 = User.find_or_create_by document_number: 38425159, medical_plan: medical_plan_310
 user1.update! first_name: 'Cosme', last_name: 'Fulanito'
-User.find_or_create_by document_number: 11111111, medical_plan_number: 310
-User.find_or_create_by document_number: 11111112, medical_plan_number: 310
-User.find_or_create_by document_number: 11111113, medical_plan_number: 310
+User.find_or_create_by document_number: 11111111, medical_plan: medical_plan_310
+User.find_or_create_by document_number: 11111112, medical_plan: medical_plan_310
+User.find_or_create_by document_number: 11111113, medical_plan: medical_plan_310
 
 puts "Create Specialities..."
 traumatologia = Specialty.find_or_create_by name: "Traumatología"
@@ -19,7 +23,7 @@ HealthProvider.find_or_create_by(name: 'Hospital Aleman') do |hp|
 	hp.phone_number = '45667834'
 	hp.specialty = traumatologia
 	hp.languages = 'español, alemán, inglés'
-	hp.medical_plan_numbers_accepted = '310, 410, 510'
+	hp.medical_plans_accepted << [medical_plan_310, medical_plan_410]
 	hp.provider_type = :hospital
 	hp.save!
 end
@@ -31,7 +35,7 @@ HealthProvider.find_or_create_by(name: 'Harry') do |hp|
 	hp.phone_number = '45667835'
 	hp.specialty = oftalmologia
 	hp.languages = 'español'
-	hp.medical_plan_numbers_accepted = '310'
+	hp.medical_plans_accepted << [medical_plan_310]
 	hp.provider_type = :doctor
 	hp.save!
 end
@@ -43,11 +47,11 @@ hp = HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
 	hp.phone_number = '45667836'
 	hp.specialty = traumatologia
 	hp.languages = 'español, inglés'
-	hp.medical_plan_numbers_accepted = '310, 410'
+	hp.medical_plans_accepted << [medical_plan_310]
 	hp.provider_type = :doctor
 	hp.save!
 end
 
 Authorization.create!(requester: user1, specialty: traumatologia, status: :requested, provider: hp)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development? && !AdminUser.find_by(email: "admin@example.com").present?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 'Admin') if Rails.env.development? && !AdminUser.find_by(email: "admin@example.com").present?
 puts "Database seeding finished"

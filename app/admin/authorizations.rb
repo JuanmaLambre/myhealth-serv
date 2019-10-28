@@ -44,7 +44,7 @@ ActiveAdmin.register Authorization do
       a.requester.email
     end
     column "Plan" do |a|
-      a.requester.medical_plan_number
+      a.requester.medical_plan.number
     end
     column "Fecha de pedido", :created_at
     column "Estado" do |a|
@@ -75,7 +75,7 @@ ActiveAdmin.register Authorization do
         a.requester.last_name
       end
       row 'Plan' do |a|
-        a.requester.medical_plan_number
+        a.requester.medical_plan.number
       end
       row 'Fecha de pedido' do |a|
         a.created_at

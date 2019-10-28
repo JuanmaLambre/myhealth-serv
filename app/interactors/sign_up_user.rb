@@ -11,9 +11,11 @@ class SignUpUser < BaseInteractor
 
 	private
 	def user
-		@user ||= User.find_by!(document_number: @user_params[:document_number], 
-			medical_plan_number: @user_params[:medical_plan_number]
-		)
+		@user ||= User.find_by!(document_number: @user_params[:document_number], medical_plan: medical_plan)
+	end
+
+	def medical_plan
+		@medical_plan ||= MedicalPlan.find_by! @user_params[:medical_plan_number]
 	end
 
 	def update_user
