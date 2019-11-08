@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 	use_doorkeeper
 	devise_for :users
 
+	resources :authorizations, only: [:index, :create]
+
 	resource :health_providers do
 		collection do
 			get 'search' => 'health_providers#search'
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
 
 	resources :specialties, only: [:index]
 
-	resources :authorizations, only: [:index, :create]
+	resources :study_types
 
 	resources :users
 

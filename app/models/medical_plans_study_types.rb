@@ -7,9 +7,9 @@
 #  specialty_id    :bigint
 #
 
-class MedicalPlansSpecialties < ApplicationRecord
-	validates :medical_plan, uniqueness: { scope: :specialty }
+class MedicalPlansStudyTypes < ApplicationRecord
+	validates :medical_plan, uniqueness: { scope: :tudy_type }
 
+	belongs_to :study_type
 	belongs_to :medical_plan
-	belongs_to :specialty
 end

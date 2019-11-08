@@ -13,6 +13,9 @@ es:
       medical_plan:
         one: "Plan Médico"
         other: "Planes Médicos"
+      study_type:
+        one: "Tipo de estudio"
+        other: "Tipos de estudios"
       specialty:
         one: "Especialidad"
         other: "Especialidades"

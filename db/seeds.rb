@@ -20,6 +20,9 @@ Specialty.find_or_create_by name: "Dermatología"
 Specialty.find_or_create_by name: "Pediatría"
 Specialty.find_or_create_by name: "Radiología"
 
+puts "Create Study types..."
+study_type = StudyType.find_or_create_by name: 'Tomografía'
+
 puts "Create Health Providers..."
 HealthProvider.find_or_create_by(name: 'Hospital Aleman') do |hp|
 	hp.latitude = -34.5922517
@@ -57,6 +60,6 @@ hp = HealthProvider.find_or_create_by(name: 'Hermione') do |hp|
 	hp.save!
 end
 
-Authorization.create!(requester: user1, specialty: traumatologia, status: :requested, provider: hp)
+Authorization.create!(requester: user1, specialty: traumatologia, status: :requested, provider: hp, study_type: study_type)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 'Admin') if Rails.env.development? && !AdminUser.find_by(email: "admin@example.com").present?
 puts "Database seeding finished"

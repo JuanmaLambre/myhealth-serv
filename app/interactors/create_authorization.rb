@@ -1,8 +1,9 @@
 class CreateAuthorization
-	def initialize(requester:, provider_id:, specialty_id:, requester_image:)
+	def initialize(requester:, provider_id:, specialty_id:, study_type_id:, requester_image:)
 		@requester = requester
 		@provider_id = provider_id
 		@specialty_id = specialty_id
+		@study_type_id = study_type_id
 		@requester_image = requester_image
 	end
 
@@ -14,7 +15,7 @@ class CreateAuthorization
 	private
 	def create_authorization
 		@authorization = Authorization.create!(requester: @requester, provider: provider, 
-			specialty: specialty, status: status
+			specialty: specialty, status: status, study_type: study_type
 		)
 		attach_image
 	end
@@ -31,8 +32,12 @@ class CreateAuthorization
 		@specialty ||= Specialty.find @specialty_id
 	end
 
+	def study_type
+		@study_type ||= StudyType.find @study_type_id
+	end
+
 	def status
-		return :accepted if @requester.medical_plan.autmatically_accepted_specialties.include?(specialty)
+		return :accepted if @requester.medical_plan.autmatically_accepted_studies.include?(study_type)
 		:requested
 	end
 end

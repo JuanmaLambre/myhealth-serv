@@ -3,15 +3,9 @@ class AuthorizationsController < ApplicationController
 
 	def create
 		authorization = CreateAuthorization.new(requester: current_user, provider_id: params[:provider_id], 
-			specialty_id: params[:specialty_id], requester_image: params[:requester_image]
+			specialty_id: params[:specialty_id], study_type_id: params[:study_type_id], 
+			requester_image: params[:requester_image]
 		).execute
-		# authorization = Authorization.create!(
-		# 	requester: current_user,
-		# 	provider: HealthProvider.find(params[:provider_id]),
-		# 	specialty: Specialty.find(params[:specialty_id]),
-		# 	status: :requested
-		# )
-		# authorization.requester_image.attach params[:requester_image]
 		render_object authorization
 	end
 
