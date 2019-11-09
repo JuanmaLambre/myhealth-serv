@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
 	resources :study_types
 
-	resources :users
+	resources :users do
+		post 'log_out' => 'users#log_out'
+	end
 
 	post 'sign_up' => 'users#sign_up'
 end

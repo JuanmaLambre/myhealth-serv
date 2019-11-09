@@ -212,6 +212,18 @@ paths:
           description: user updated
           schema:
             $ref: '#/definitions/User'
+  /users/me/log_out:
+    post:
+      summary: Log in
+      tags:
+        - Users
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: user updated
+          schema:
+            $ref: '#/definitions/User'
 definitions:
   Authorization:
     type: object

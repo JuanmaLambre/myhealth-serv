@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
-	before_action :doorkeeper_authorize!, only: [:update]
+	before_action :doorkeeper_authorize!, except: [:sign_up]
+
+	def log_out
+		current_user.update! device_token: nil
+		render_object current_user
+	end
 
 	def sign_up
 		render_object SignUpUser.new(user_params: user_params).execute
