@@ -31,15 +31,18 @@ paths:
             properties:
               provider_id:
                 type: integer
-              specialty_id:
-                type: integer
               requester_image:
                 type: string
                 description: imagen
+              specialty_id:
+                type: integer
+              study_type_id:
+                type: integer
             required:
               - provider_id
-              - specialty_id
               - requester_image
+              - specialty_id
+              - study_type_id
       responses:
         '200':
           description: authorizations
@@ -83,6 +86,34 @@ paths:
             type: array
             items:
               $ref: '#/definitions/HealthProvider'
+  /specialties:
+    get:
+      summary: Get specialties
+      tags:
+        - Specialty
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: A Specialty list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Specialty'
+  /study_types:
+    get:
+      summary: Get study types
+      tags:
+        - Study type
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: A Study type list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/StudyType'
   /oauth/token:
     post:
       summary: Log in
@@ -159,20 +190,6 @@ paths:
           description: user doesn't exist
         '422':
           description: invalid email
-  /specialties:
-    get:
-      summary: Get specialties
-      tags:
-        - Specialty
-      consumes:
-        - application/json
-      responses:
-        '200':
-          description: A Specialty list
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Specialty'
   /users/me:
     patch:
       summary: Update user
@@ -211,12 +228,14 @@ definitions:
           - accepted
       processed_time:
         type: string
-      requester:
-        $ref: '#/definitions/User'
       provider:
         $ref: '#/definitions/HealthProvider'
+      requester:
+        $ref: '#/definitions/User'
       specialty:
         $ref: '#/definitions/Specialty'
+      study_type:
+        $ref: '#/definitions/StudyType'
     xml:
       name: Authorization
   HealthProvider:
@@ -247,6 +266,16 @@ definitions:
     xml:
       name: HealthProvider
   Specialty:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+    xml:
+      name: Specialty
+  StudyType:
     type: object
     properties:
       id:
