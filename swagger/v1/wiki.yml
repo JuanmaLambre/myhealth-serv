@@ -48,6 +48,20 @@ paths:
           description: authorizations
           schema:
             $ref: '#/definitions/Authorization'
+  /authorizations/:id/cancel:
+    post:
+      summary: Cancel an authorization
+      tags:
+        - Authorizations
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: authorizations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Authorization'
   /health_providers/search:
     get:
       summary: Search health providers
