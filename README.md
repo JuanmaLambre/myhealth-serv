@@ -2,7 +2,8 @@
 
 ## Server IP
 
-3.82.194.73
+New IP: 
+34.237.242.6
 
 ## Requirements
 
