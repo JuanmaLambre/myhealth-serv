@@ -19,6 +19,7 @@ ActiveAdmin.register AdminUser do
       f.input :password, label: "Contraseña"
       f.input :password_confirmation, label: "Confirmar contraseña"
       f.input :role, label: "Rol", as: :select, include_blank: false, collection: AdminUser.roles.values
+      f.input :signature, label: "Firma electrónica", as: :file
     end
     f.actions
   end

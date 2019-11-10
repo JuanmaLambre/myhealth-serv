@@ -20,6 +20,9 @@ class AdminUser < ApplicationRecord
 
   @@roles = {admin: "Admin", authorizer: "Autorizador"}
 
+  has_one_attached :signature
+
+
   def self.roles
     @@roles
   end
