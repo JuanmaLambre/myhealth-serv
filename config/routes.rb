@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 	use_doorkeeper
 	devise_for :users
 
-	resources :authorizations, only: [:index, :create]
+	resources :authorizations, only: [:index, :create] do
+		post 'cancel' => 'authorizations#cancel'
+	end
 
 	resource :health_providers do
 		collection do

@@ -89,7 +89,8 @@ ActiveAdmin.register Authorization do
 
 	form do |f|
 		f.inputs do
-			f.input :status, selected: Authorization.statuses[f.object.status], label: "Estado", as: :select, include_blank: false, collection: Authorization.statuses.values
+			f.input :status, selected: Authorization.statuses[f.object.status], label: "Estado", 
+				as: :select, include_blank: false, collection: AuthorizationAdminStatus.values.values
 			f.input :image, label: "Imagen", :as => :file
 			f.input :comment, label: "Observaciones"
 		end

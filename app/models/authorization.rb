@@ -17,7 +17,7 @@
 class Authorization < ApplicationRecord
 	include Rails.application.routes.url_helpers
 
-	enum status: { requested: 'Pedido', evaluation: 'En evaluación', declined: 'Rechazado', accepted: 'Aceptado' }
+	enum status: AuthorizationStatus.values
 
 	belongs_to :requester, class_name: 'User'
 	belongs_to :specialty
@@ -29,7 +29,6 @@ class Authorization < ApplicationRecord
 	has_one_attached :image
 
 	validates :requester_image, size: { less_than: 50.megabytes , message: 'La imagen pesa más de lo permitido' }
-	#validates :image, size: { less_than: 1.megabytes }
 
 	scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
 
