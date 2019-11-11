@@ -31,4 +31,8 @@ class AdminUser < ApplicationRecord
     self.role == AdminUser.roles[:admin]
   end
 
+  def has_signature?
+    self.signature.attached?
+  end
+
 end

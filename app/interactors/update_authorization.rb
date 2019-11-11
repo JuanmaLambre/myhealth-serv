@@ -13,6 +13,7 @@ class UpdateAuthorization < BaseInteractor
 	private
 	def update_authorization
 		authorization.update! authorization_attributes
+		authorization.overlay_admin_signature(@current_user.signature)
 		authorization.reload
 	end
 

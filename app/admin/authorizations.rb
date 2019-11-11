@@ -1,5 +1,5 @@
 ActiveAdmin.register Authorization do
-	permit_params :status, :image, :comment, :processed_time, :authorizer
+	permit_params :id, :status, :image, :comment, :processed_time, :authorizer
 
 	actions :all, :except => [:new]
 
@@ -9,8 +9,12 @@ ActiveAdmin.register Authorization do
 
 	controller do
 		def update
-			authorization = UpdateAuthorization.new(authorization_params: params, current_user: current_admin_user).execute
-			redirect_to admin_authorization_path(authorization.id)
+			if current_admin_user.has_signature? then
+				authorization = UpdateAuthorization.new(authorization_params: params, current_user: current_admin_user).execute
+				redirect_to admin_authorization_path(authorization.id)
+			else
+				redirect_to admin_authorization_path(params['id']), flash: {error: "El usuario autorizador no tiene una firma electrónica cargada"}
+			end
 		end
 
 		def show
@@ -79,7 +83,7 @@ ActiveAdmin.register Authorization do
 				a.authorizer.email if a.authorizer.present?
 			end
 			row 'Imagen del solicitante' do |a|
-				image_tag(a.requester_image, width:273,height:248) if a.requester_image.attached?
+				image_tag(a.requester_image) if a.requester_image.attached?
 			end
 			row 'Imagen de la resolución' do |a|
 				image_tag(a.image, width:273,height:248) if a.image.attached?
@@ -91,7 +95,6 @@ ActiveAdmin.register Authorization do
 		f.inputs do
 			f.input :status, selected: Authorization.statuses[f.object.status], label: "Estado", 
 				as: :select, include_blank: false, collection: AuthorizationAdminStatus.values.values
-			f.input :image, label: "Imagen", :as => :file
 			f.input :comment, label: "Observaciones"
 		end
 		f.actions
