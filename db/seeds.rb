@@ -14,11 +14,9 @@ User.find_or_create_by document_number: 11111113, medical_plan: medical_plan_310
 puts "Create Specialities..."
 traumatologia = Specialty.find_or_create_by name: "Traumatología"
 oftalmologia = Specialty.find_or_create_by name: "Oftalmología"
-Specialty.find_or_create_by name: "Cardiología"
-Specialty.find_or_create_by name: "Ginecología"
-Specialty.find_or_create_by name: "Dermatología"
 Specialty.find_or_create_by name: "Pediatría"
 Specialty.find_or_create_by name: "Radiología"
+load './db/specs.rb'
 
 puts "Create Study types..."
 study_type = StudyType.find_or_create_by name: 'Tomografía'
