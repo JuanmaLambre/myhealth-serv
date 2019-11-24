@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 	end
 
 	post 'sign_up' => 'users#sign_up'
+	post 'reset_password' => 'users#reset_password'
 end
