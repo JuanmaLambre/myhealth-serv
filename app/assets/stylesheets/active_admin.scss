@@ -30,3 +30,28 @@ div.horizontal_child {
   display: inline-block;
   vertical-align: top;
 }
+
+th.horizontal {
+  text-align: left;
+  padding-right: 12px;
+}
+
+th.vertical {
+  text-align: left;
+  padding-right: 16px;
+}
+
+td.vertical {
+  padding-right: 16px;
+}
+
+h1.dashboard {
+  font-size: x-large;
+  padding: 24px 0 32px 24px;
+  font-weight: bold;
+}
+
+div.dashboard {
+  padding: 12px 24px 12px 24px;
+  width: 100%;
+}

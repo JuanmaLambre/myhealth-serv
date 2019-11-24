@@ -1,4 +1,4 @@
-<h1>Autorizaciones</h1>
+<h1 class="dashboard">Autorizaciones</h1>
 
 <% @last_auths = Authorization.
         where(status: :accepted).or(Authorization.where(status: :declined)).
@@ -13,7 +13,7 @@
 <% @manual_pct = 1.0 * @manual_count / @last_auths.count %>
 
 
-<div style="width: 100%">
+<div class="dashboard">
 
   <% @x_domain = 30.downto(0).collect { |i| (Time.now - i.days).strftime('%b %e') } %>
   <% counter = 0 %>
@@ -34,18 +34,18 @@
   <div class="horizontal_child", style="padding: 0 0 0 24px">
     <table style="width:1%">
       <tr>
-        <th>Automáticas</th>
-        <td><%= @automatic_count %></td>
-        <td><%= @automatic_pct.nan? ? 0 : (@automatic_pct * 100).to_i %>%</td>
+        <th class="vertical">Automáticas</th>
+        <td class="vertical"><%= @automatic_count %></td>
+        <td class="vertical"><%= @automatic_pct.nan? ? 0 : (@automatic_pct * 100).to_i %>%</td>
       </tr>
       <tr>
-        <th>Manuales</th>
-        <td><%= @manual_count %></td>
-        <td><%= @manual_pct.nan? ? 0 : (@manual_pct * 100).to_i %>%</td>
+        <th class="vertical">Manuales</th>
+        <td class="vertical"><%= @manual_count %></td>
+        <td class="vertical"><%= @manual_pct.nan? ? 0 : (@manual_pct * 100).to_i %>%</td>
       </tr>
       <tr>
-        <th>Totales</th>
-        <td><%= @last_auths.count %></td>
+        <th class="vertical">Totales</th>
+        <td class="vertical"><%= @last_auths.count %></td>
       </tr>
     </table>
   </div>
