@@ -15,7 +15,7 @@ class CreateAuthorization
 	private
 	def create_authorization
 		@authorization = Authorization.create!(requester: @requester, provider: provider, 
-			specialty: specialty, status: status, study_type: study_type
+			specialty: specialty, status: status, study_type: study_type, automated: is_automated?
 		)
 		attach_image
 	end
@@ -37,7 +37,11 @@ class CreateAuthorization
 	end
 
 	def status
-		return :accepted if @requester.medical_plan.autmatically_accepted_studies.include?(study_type)
+		return :accepted if is_automated?
 		:requested
 	end
+
+    def is_automated?
+        return @requester.medical_plan.autmatically_accepted_studies.include?(study_type)
+    end
 end

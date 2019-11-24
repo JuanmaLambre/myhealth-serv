@@ -1,13 +1,13 @@
 <h1>Autorizaciones</h1>
 
-<% @last_auths = Authorization.select("DATE_FORMAT(updated_at, '%b %e')").where('updated_at > ?', Time.now - 30.days) %>
+<% @last_auths = Authorization.where(status: :accepted).or(Authorization.where(status: :declined)).where('updated_at > ?', Time.now - 30.days) %>
 <% @accepted_by_day = @last_auths.where(status: :accepted).group("DATE_FORMAT(updated_at, '%b %e')").count %>
 <% @declined_by_day = @last_auths.where(status: :declined).group("DATE_FORMAT(updated_at, '%b %e')").count %>
 
-<% @automatic_count = 304 %>
-<% @automatic_pct = 0.3 %>
-<% @manual_count = 699 %>
-<% @manual_pct = 0.7 %>
+<% @automatic_count = @last_auths.where(automated: true).count %>
+<% @manual_count = @last_auths.where(automated: false).count %>
+<% @automatic_pct = 1.0 * @automatic_count / @last_auths.count %>
+<% @manual_pct = 1.0 * @manual_count / @last_auths.count %>
 
 
 <div style="width: 100%">
@@ -21,16 +21,16 @@
       <tr>
         <th>Automáticas</th>
         <td><%= @automatic_count %></td>
-        <td><%= (@automatic_pct * 100).to_i %>%</td>
+        <td><%= @automatic_pct.nan? ? 0 : (@automatic_pct * 100).to_i %>%</td>
       </tr>
       <tr>
         <th>Manuales</th>
         <td><%= @manual_count %></td>
-        <td><%= (@manual_pct * 100).to_i %>%</td>
+        <td><%= @manual_pct.nan? ? 0 : (@manual_pct * 100).to_i %>%</td>
       </tr>
       <tr>
         <th>Totales</th>
-        <td><%= @automatic_count + @manual_count %></td>
+        <td><%= @last_auths.count %></td>
       </tr>
     </table>
   </div>
