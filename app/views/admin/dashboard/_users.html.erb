@@ -2,7 +2,7 @@
 
 <h1>Afiliados por plan</h1>
 
-<% @plans = {210 => 326, 310 => 749, 410 => 385, 510 => 129} %>
+<% @plans =  User.joins(:medical_plan).group('medical_plans.number').count %>
 
 <div style="width: 100%">
     <div class="horizontal_child" style="width: 50%"><%= pie_chart @plans %></div>
@@ -19,8 +19,8 @@
             <tr>
                 <td><%= number %></td>
                 <td><%= amount %></td>
-                <td>87%</td>
-                <td>000</td>
+                <td><%= (100.0 * amount / @plans.values.sum).to_i %>%</td>
+                <td><%= User.joins(:medical_plan).where("users.email <> ''").where('medical_plans.number = ?', number).count %></td>
             </tr>
             <% end %>
         </table>
