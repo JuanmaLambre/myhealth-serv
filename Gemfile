@@ -77,8 +77,9 @@ gem 'cancan'
 
 gem 'rmagick'
 
-gem "active_material", github: "vigetlabs/active_material"
+gem 'chartkick'
 
+gem "active_material", github: "vigetlabs/active_material"
 
 
 group :development, :test do
