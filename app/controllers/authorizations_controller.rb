@@ -8,7 +8,7 @@ class AuthorizationsController < ApplicationController
 	end
 
 	def create
-		authorization = CreateAuthorization.new(requester: current_user, provider_id: params[:provider_id], 
+		authorization = CreateAuthorization.new(requester_id: params[:requester_id], provider_id: params[:provider_id], 
 			specialty_id: params[:specialty_id], study_type_id: params[:study_type_id], 
 			requester_image: params[:requester_image]
 		).execute
@@ -17,5 +17,9 @@ class AuthorizationsController < ApplicationController
 
 	def index
 		render_collection Authorization.where(requester: current_user)
+	end
+
+	def show
+		render_object Authorization.find params[:id]
 	end
 end

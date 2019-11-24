@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
 	validates :email, 'valid_email_2/email': true
 
+	belongs_to :family_group
 	belongs_to :medical_plan
 
 	def name

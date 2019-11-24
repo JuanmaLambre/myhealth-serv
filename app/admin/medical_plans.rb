@@ -8,7 +8,6 @@ ActiveAdmin.register MedicalPlan do
 	end
 
 	index do
-		id_column
 		column "Número", :number
 		actions
 	end

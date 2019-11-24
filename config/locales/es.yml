@@ -25,3 +25,9 @@ es:
           attributes:
             image:
               file_size_out_of_range: "La imagen pesa más de lo permitido"
+  date:
+    formats:
+      long: "%d/%m/%Y"
+  time:
+    formats:
+      long: "%d/%m/%Y"

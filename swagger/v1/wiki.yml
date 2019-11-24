@@ -3,6 +3,18 @@ info:
   title: API V1
   version: "1.0.0"
 paths:
+  /authorizations/:id:
+    get:
+      summary: Get an authorization
+      tags:
+        - Authorizations
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: authorizations
+          schema:
+            $ref: '#/definitions/Authorization'
   /authorizations:
     get:
       summary: Get authorizations
@@ -29,6 +41,8 @@ paths:
           schema:
             type: object
             properties:
+              requester_id:
+                type: integer
               provider_id:
                 type: integer
               requester_image:
@@ -39,6 +53,7 @@ paths:
               study_type_id:
                 type: integer
             required:
+              - requester_id
               - provider_id
               - requester_image
               - specialty_id
@@ -205,8 +220,8 @@ paths:
         '422':
           description: invalid email
   /users/me:
-    patch:
-      summary: Update user
+    get:
+      summary: Get current user
       tags:
         - Users
       consumes:
@@ -264,6 +279,13 @@ definitions:
         $ref: '#/definitions/StudyType'
     xml:
       name: Authorization
+  FamilyGroup:
+    type: object
+    properties:
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/User'
   HealthProvider:
     type: object
     properties:
@@ -335,6 +357,8 @@ definitions:
         type: string
       is_enabled:
         type: boolean
+      family_group:
+        $ref: '#/definitions/FamilyGroup'
     xml:
       name: User
 # Added by API Auto Mocking Plugin

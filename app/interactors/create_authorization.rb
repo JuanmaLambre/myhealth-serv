@@ -1,6 +1,6 @@
 class CreateAuthorization
-	def initialize(requester:, provider_id:, specialty_id:, study_type_id:, requester_image:)
-		@requester = requester
+	def initialize(requester_id:, provider_id:, specialty_id:, study_type_id:, requester_image:)
+		@requester_id = requester_id
 		@provider_id = provider_id
 		@specialty_id = specialty_id
 		@study_type_id = study_type_id
@@ -14,7 +14,7 @@ class CreateAuthorization
 
 	private
 	def create_authorization
-		@authorization = Authorization.create!(requester: @requester, provider: provider, 
+		@authorization = Authorization.create!(requester: requester, provider: provider, 
 			specialty: specialty, status: status, study_type: study_type
 		)
 		attach_image
@@ -22,6 +22,10 @@ class CreateAuthorization
 
 	def attach_image
 		@authorization.requester_image.attach @requester_image
+	end
+
+	def requester
+		@requester ||= User.find @requester_id
 	end
 
 	def provider
