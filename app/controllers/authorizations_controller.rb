@@ -18,4 +18,8 @@ class AuthorizationsController < ApplicationController
 	def index
 		render_collection Authorization.where(requester: current_user)
 	end
+
+	def show
+		render_object Authorization.find params[:id]
+	end
 end
