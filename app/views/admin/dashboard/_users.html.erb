@@ -2,7 +2,8 @@
 
 <h1>Afiliados por plan</h1>
 
-<% @plans =  User.joins(:medical_plan).group('medical_plans.number').count %>
+<% @users_count = User.joins(:medical_plan).group('medical_plans.number').count %>
+<% @plans =  Hash[MedicalPlan.all.collect { |mp| [mp.number, @users_count[mp.number] || 0] }] %>
 
 <div style="width: 100%">
     <div class="horizontal_child" style="width: 50%"><%= pie_chart @plans %></div>
