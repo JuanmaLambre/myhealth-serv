@@ -1,6 +1,6 @@
 <h1>Autorizaciones</h1>
 
-<% @last_auths = Authorization.where(status: :accepted).or(Authorization.where(status: :declined)).where('updated_at > ?', Time.now - 30.days) %>
+<% @last_auths = Authorization.where(status: :accepted).or(Authorization.where(status: :declined)).where('processed_time > ?', Time.now - 30.days) %>
 <% @accepted_by_day = @last_auths.where(status: :accepted).group("DATE_FORMAT(updated_at, '%b %e')").count %>
 <% @declined_by_day = @last_auths.where(status: :declined).group("DATE_FORMAT(updated_at, '%b %e')").count %>
 
