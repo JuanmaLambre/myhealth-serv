@@ -3,6 +3,18 @@ info:
   title: API V1
   version: "1.0.0"
 paths:
+  /authorizations/:id:
+    get:
+      summary: Get an authorization
+      tags:
+        - Authorizations
+      consumes:
+        - application/json
+      responses:
+        '200':
+          description: authorizations
+          schema:
+            $ref: '#/definitions/Authorization'
   /authorizations:
     get:
       summary: Get authorizations
