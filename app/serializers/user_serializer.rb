@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
 		:phone_number, :birth_date, :medical_plan_expiration_date, :is_enabled
 
 	belongs_to :medical_plan
+	belongs_to :family_group
 end

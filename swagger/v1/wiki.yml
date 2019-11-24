@@ -217,8 +217,8 @@ paths:
         '422':
           description: invalid email
   /users/me:
-    patch:
-      summary: Update user
+    get:
+      summary: Get current user
       tags:
         - Users
       consumes:
@@ -276,6 +276,13 @@ definitions:
         $ref: '#/definitions/StudyType'
     xml:
       name: Authorization
+  FamilyGroup:
+    type: object
+    properties:
+      users:
+        type: array
+        items:
+          $ref: '#/definitions/User'
   HealthProvider:
     type: object
     properties:
@@ -347,6 +354,8 @@ definitions:
         type: string
       is_enabled:
         type: boolean
+      family_group:
+        $ref: '#/definitions/FamilyGroup'
     xml:
       name: User
 # Added by API Auto Mocking Plugin

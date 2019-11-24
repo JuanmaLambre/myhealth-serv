@@ -5,9 +5,11 @@ medical_plan_310 = MedicalPlan.find_or_create_by number: 310
 medical_plan_410 = MedicalPlan.find_or_create_by number: 410
 
 puts "Create Users..."
+family_group = FamilyGroup.create!
 user1 = User.find_or_create_by document_number: 38425159, medical_plan: medical_plan_310
-user1.update! first_name: 'Cosme', last_name: 'Fulanito'
-User.find_or_create_by document_number: 11111111, medical_plan: medical_plan_310
+user1.update! first_name: 'Cosme', last_name: 'Fulanito', family_group: family_group
+user2 = User.find_or_create_by document_number: 11111111, medical_plan: medical_plan_310
+user2.update! family_group: family_group
 User.find_or_create_by document_number: 11111112, medical_plan: medical_plan_310
 User.find_or_create_by document_number: 11111113, medical_plan: medical_plan_310
 
