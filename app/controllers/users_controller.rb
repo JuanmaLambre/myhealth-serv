@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 		render_object current_user
 	end
 
+	def show
+		render_object current_user, { include: [ :medical_plan, family_group: :users ] }
+	end
+
 	def sign_up
 		render_object SignUpUser.new(user_params: user_params).execute
 	end
