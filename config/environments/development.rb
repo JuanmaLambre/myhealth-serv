@@ -59,7 +59,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  Rails.application.routes.default_url_options[:host] = Settings.urls.base
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
-  config.time_zone = Settings.timezone.local
+  config.time_zone = nil
 end

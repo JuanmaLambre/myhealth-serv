@@ -1,0 +1,28 @@
+<p/>
+
+<h1>Afiliados por plan</h1>
+
+<% @plans = {210 => 326, 310 => 749, 410 => 385, 510 => 129} %>
+
+<div style="width: 100%">
+    <div class="horizontal_child" style="width: 50%"><%= pie_chart @plans %></div>
+
+    <div class="horizontal_child">
+        <table style="width: 1%">
+            <tr>
+                <th>Plan</th>
+                <th>Totales</th>
+                <th>Porcentaje</th>
+                <th>Registrados</th>
+            </tr>
+            <% @plans.each do |number, amount| %>
+            <tr>
+                <td><%= number %></td>
+                <td><%= amount %></td>
+                <td>87%</td>
+                <td>000</td>
+            </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

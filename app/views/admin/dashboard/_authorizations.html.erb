@@ -1,0 +1,36 @@
+<h1>Autorizaciones</h1>
+
+<% @accepted_by_day = Authorization.where(status: :accepted).group(:updated_at).count %>
+
+<% @automatic_count = 304 %>
+<% @automatic_pct = 0.3 %>
+<% @manual_count = 699 %>
+<% @manual_pct = 0.7 %>
+
+
+<div style="width: 100%">
+
+  <div class="horizontal_child" style="width: 75%">
+    <%= line_chart [{name: "INC", data: {1 => 32, 2 => 45}}, {name: "DEC", data:{1 => 45, 2 => 32}}] %>
+  </div>
+
+  <div class="horizontal_child", style="padding: 0 0 0 24px">
+    <table style="width:1%">
+      <tr>
+        <th>Automáticas</th>
+        <td><%= @automatic_count %></td>
+        <td><%= (@automatic_pct * 100).to_i %>%</td>
+      </tr>
+      <tr>
+        <th>Manuales</th>
+        <td><%= @manual_count %></td>
+        <td><%= (@manual_pct * 100).to_i %>%</td>
+      </tr>
+      <tr>
+        <th>Totales</th>
+        <td><%= @automatic_count + @manual_count %></td>
+      </tr>
+    </table>
+  </div>
+
+</div>

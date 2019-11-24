@@ -23,3 +23,9 @@ $secondary-color: #FFE0B2;
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+
+div.horizontal_child {
+  display: inline-block;
+  vertical-align: top;
+}
