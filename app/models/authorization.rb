@@ -32,6 +32,7 @@ class Authorization < ApplicationRecord
 
 	scope :requester_email, -> (email) { joins(:requester).where('users.email': email) }
 
+
 	def requester_image_url
 		return nil unless requester_image.attached?
 		url_for requester_image
@@ -40,5 +41,18 @@ class Authorization < ApplicationRecord
 	def approver_image_url
 		return nil unless image.attached?
 		url_for image
+	end
+
+	def overlay_admin_signature(signature)
+		if requester_image.attached? then
+			image_list = Magick::ImageList.new()
+			image_list.push Magick::Image.from_blob(requester_image.download).first
+			image_list.push Magick::Image.from_blob(signature.download).first
+
+			random_name = (0...16).map { (65 + rand(26)).chr }.join + '.jpg'
+			image_list.append(true).write(random_name)
+			requester_image.attach(io: File.open(random_name), filename: random_name)
+			File.delete(random_name)
+		end
 	end
 end

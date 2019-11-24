@@ -325,6 +325,7 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rmagick (4.0.0)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -463,6 +464,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n
   rails_best_practices
+  rmagick
   rspec-mocks
   rspec-rails
   rswag

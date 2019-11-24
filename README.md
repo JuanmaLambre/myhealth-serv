@@ -13,6 +13,10 @@ New IP:
 ## Set up project
 
 ```sh
+# Pre-installation:
+sudo apt-get install libmagickwand-dev
+
+# Installation:
 git clone git@github.com:JuanmaLambre/myhealth-serv.git
 cd myhealth-serv
 bundle install

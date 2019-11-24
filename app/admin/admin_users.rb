@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation, :role
+  permit_params :email, :password, :password_confirmation, :role, :signature
 
   index  download_links: false do
     selectable_column
@@ -19,6 +19,7 @@ ActiveAdmin.register AdminUser do
       f.input :password, label: "Contraseña"
       f.input :password_confirmation, label: "Confirmar contraseña"
       f.input :role, label: "Rol", as: :select, include_blank: false, collection: AdminUser.roles.values
+      f.input :signature, label: "Firma electrónica", as: :file
     end
     f.actions
   end
@@ -30,6 +31,9 @@ ActiveAdmin.register AdminUser do
       end
       row 'Rol' do |r|
         r.role
+      end
+      row 'Firma electrónica' do |a|
+        image_tag(a.signature) if a.signature.attached?
       end
       row 'Creada en' do |r|
         r.created_at

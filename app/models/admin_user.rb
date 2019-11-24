@@ -20,12 +20,19 @@ class AdminUser < ApplicationRecord
 
   @@roles = {admin: "Admin", authorizer: "Autorizador"}
 
+  has_one_attached :signature
+
+
   def self.roles
     @@roles
   end
 
   def super_admin?
     self.role == AdminUser.roles[:admin]
+  end
+
+  def has_signature?
+    self.signature.attached?
   end
 
 end
