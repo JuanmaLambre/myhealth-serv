@@ -41,6 +41,8 @@ paths:
           schema:
             type: object
             properties:
+              requester_id:
+                type: integer
               provider_id:
                 type: integer
               requester_image:
@@ -51,6 +53,7 @@ paths:
               study_type_id:
                 type: integer
             required:
+              - requester_id
               - provider_id
               - requester_image
               - specialty_id
