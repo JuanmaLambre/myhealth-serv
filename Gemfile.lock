@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/vigetlabs/active_material.git
+  revision: 446dbcf6db7d654aadacb8e2ed564003b89fc725
+  specs:
+    active_material (1.4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -430,6 +436,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_material!
   active_model_serializers
   active_storage_validations
   activeadmin
