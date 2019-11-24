@@ -5,7 +5,6 @@ ActiveAdmin.register HealthProvider do
 	config.filters = false
 
 	index do
-		id_column
 		column "Nombre", :name
 		column "Número de teléfono", :phone_number
 		column "Especialidad", :specialty

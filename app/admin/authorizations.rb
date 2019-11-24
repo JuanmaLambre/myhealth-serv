@@ -24,7 +24,6 @@ ActiveAdmin.register Authorization do
 	end
 
 	index do
-		id_column
 		column "Prestador" do |a|
 			a.provider.name unless !a.provider.present?
 		end

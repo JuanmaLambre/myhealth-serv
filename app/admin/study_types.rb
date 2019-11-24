@@ -5,7 +5,7 @@ ActiveAdmin.register StudyType do
 
 	controller do
 		def scoped_collection
-			StudyType.where(deleted_at: nil)
+			StudyType.where(deleted_at: nil).order(name: :desc)
 		end
 
 		def destroy
@@ -15,7 +15,6 @@ ActiveAdmin.register StudyType do
 	end
  
 	index do
-		id_column
 		column "Nombre", :name
 		actions
 	end
