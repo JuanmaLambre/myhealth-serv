@@ -12,6 +12,22 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: Rails.application.secrets.smtp[:server],
+      port: Rails.application.secrets.smtp[:port],
+      domain: Rails.application.secrets.smtp[:domain],
+      user_name: Rails.application.secrets.smtp[:user_name],
+      password: Rails.application.secrets.smtp[:password],
+      enable_starttls_auto: Rails.application.secrets.smtp[:starttls],
+      tls: Rails.application.secrets.smtp[:tls]
+  }
+  config.action_mailer.default_options = {
+      from: Rails.application.secrets.smtp[:from]
+  }
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
