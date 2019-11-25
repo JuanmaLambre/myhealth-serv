@@ -44,15 +44,13 @@ class Authorization < ApplicationRecord
 	end
 
 	def overlay_admin_signature(signature)
-		if requester_image.attached? then
-			image_list = Magick::ImageList.new()
-			image_list.push Magick::Image.from_blob(requester_image.download).first
-			image_list.push Magick::Image.from_blob(signature.download).first
+		image_list = Magick::ImageList.new()
+		image_list.push Magick::Image.from_blob(requester_image.download).first if requester_image.attached?
+		image_list.push Magick::Image.from_blob(signature.download).first
 
-			random_name = (0...16).map { (65 + rand(26)).chr }.join + '.jpg'
-			image_list.append(true).write(random_name)
-			requester_image.attach(io: File.open(random_name), filename: random_name)
-			File.delete(random_name)
-		end
+		random_name = (0...16).map { (65 + rand(26)).chr }.join + '.jpg'
+		image_list.append(true).write(random_name)
+		requester_image.attach(io: File.open(random_name), filename: random_name)
+		File.delete(random_name)
 	end
 end
